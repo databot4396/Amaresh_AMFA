@@ -11,7 +11,7 @@ public class ScorerImpl implements Scorer{
 	@Override
 	public int getN() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 30;
 	}
 
 	@Override

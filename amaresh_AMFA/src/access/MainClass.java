@@ -19,8 +19,6 @@ import com.zlabs.aics.adaptivemfa.AdaptiveMFAScorer;
 import com.zlabs.aics.adaptivemfa.Scorer;
 import com.zlabs.aics.adaptivemfa.factors.LocationFinder;
 import com.zlabs.aics.adaptivemfa.factors.SignInMethod;
-import com.zlabs.aics.adaptivemfa.factors.UserAgent;
-
 import impl.AMFAUserImpl;
 import impl.ScorerImpl;
 
@@ -37,7 +35,7 @@ public class MainClass {
 				12.85, 80.06, "INDIA", 1640760841518l, SignInMethod.PRIMARY_EMAIL_SIGNIN.getSignInMethod());
 		Scorer scorer = new ScorerImpl();
 		AdaptiveMFAScorer a = new AdaptiveMFAScorer(user, currentAudit, scorer);
-		Map<AMFATests, Integer> mapOut = a.runTests();
+  		Map<AMFATests, Integer> mapOut = a.runTests();
 		System.out.println(mapOut.toString());
 	}
 	

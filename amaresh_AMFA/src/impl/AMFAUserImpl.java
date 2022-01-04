@@ -2,7 +2,9 @@
 package impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -16,9 +18,13 @@ import com.zlabs.aics.adaptivemfa.factors.UserSignInTime;
 import access.MainClass;
 
 public class AMFAUserImpl implements AMFAUser{
+	private static Map<String,List<AMFAData>> userData = new HashMap<String, List<AMFAData>>();
 
 	@Override
 	public List<AMFAData> getUserData(String zuid) {
+		if(userData!=null && !userData.isEmpty() && userData.containsKey(zuid)) {
+			return userData.get(zuid);
+		}
 		if(MainClass.auditmap==null || MainClass.auditmap.isEmpty()) {
 			MainClass.initData();
 		}
@@ -42,6 +48,7 @@ public class AMFAUserImpl implements AMFAUser{
 			AMFAData data = new AMFAData(Zuid, latitude, longitude, providedCountry, providedDevice, country, state, city, region, place, signInMethod, signInTime, ua.getBrowser(), ua.getOs(), ua.getBrowserVersion(), ua.getDevice(), obj.getLong("AuditedTime"));
 			outputList.add(data);
 		}
+		userData.put(zuid, outputList);
 		return outputList;
 	}
 
